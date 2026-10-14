@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Blind Test Party</title>
+<style>
+  :root {
+    --bg: #0d0b1a; --panel: #19162e; --panel2: #221e3d; --line: #342f5c;
+    --text: #f4f1ff; --muted: #9a93c7; --accent: #ff5c8a; --accent2: #7c5cff;
+    --ok: #35d07f; --ko: #ff5470; --gold: #ffcf4a;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--text);
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif; }
+  body { background: radial-gradient(1200px 600px at 20% -10%, #2a1f5a55, transparent),
+                     radial-gradient(900px 500px at 100% 0%, #ff5c8a22, transparent), var(--bg); }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 20px 16px 60px; }
+  h1 { font-size: 2rem; margin: 0; letter-spacing: -.5px; }
+  h1 span { color: var(--accent); }
+  h2 { margin: 0 0 12px; font-size: 1.1rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 20px; }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .grid2 { display: grid; grid-template-columns: 1fr 300px; gap: 16px; }
+  @media (max-width: 760px) { .grid2 { grid-template-columns: 1fr; } }
+  input[type=text] { background: var(--panel2); border: 1px solid var(--line); color: var(--text);
+    border-radius: 12px; padding: 14px 16px; font-size: 1rem; outline: none; min-width: 0; }
+  input[type=text]:focus { border-color: var(--accent2); }
+  button { font: inherit; cursor: pointer; border: 0; border-radius: 12px; padding: 14px 20px;
+    color: #fff; background: var(--accent2); font-weight: 700; transition: transform .08s, filter .15s; }
+  button:hover { filter: brightness(1.12); }
+  button:active { transform: scale(.97); }
+  button:disabled { opacity: .4; cursor: not-allowed; }
+  button.pink { background: var(--accent); }
+  button.ok { background: var(--ok); color: #062; }
+  button.ko { background: var(--ko); }
+  button.ghost { background: var(--panel2); border: 1px solid var(--line); color: var(--text); }
+  .muted { color: var(--muted); }
+  .center { text-align: center; }
+  .err { color: var(--ko); min-height: 1.3em; margin-top: 8px; font-size: .95rem; }
+  .code { font-size: 2.6rem; font-weight: 900; letter-spacing: 8px; color: var(--gold); }
+  .packs { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+  .pack { background: var(--panel2); border: 2px solid var(--line); border-radius: 16px; padding: 18px; cursor: pointer; text-align: center; transition: .15s; }
+  .pack:hover { transform: translateY(-2px); }
+  .pack.sel { border-color: var(--accent); box-shadow: 0 0 0 4px #ff5c8a22; }
+  .pack .em { font-size: 2.4rem; }
+  .pack.locked { cursor: default; }
+  .player { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: var(--panel2); margin-bottom: 8px; }
+  .player.me { outline: 2px solid var(--accent2); }
+  .player.buzzer { outline: 2px solid var(--gold); background: #3a3320; }
+  .player.out { opacity: .5; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--ok); flex: none; }
+  .dot.off { background: #666; }
+  .pname { flex: 1; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .pscore { font-variant-numeric: tabular-nums; font-weight: 800; }
+  .pscore.neg { color: var(--ko); }
+  .tag { font-size: .7rem; background: var(--accent2); border-radius: 6px; padding: 2px 6px; margin-left: 6px; }
+  .stage { min-height: 360px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; text-align: center; }
+  .round { color: var(--muted); font-weight: 600; letter-spacing: 1px; }
+  .status { font-size: 1.5rem; font-weight: 800; }
+  .buzz { width: 210px; height: 210px; border-radius: 50%; font-size: 1.8rem; font-weight: 900; letter-spacing: 2px;
+    background: radial-gradient(circle at 35% 30%, #ff8fb0, var(--accent) 55%, #b3194a);
+    box-shadow: 0 10px 0 #7d0f33, 0 20px 40px #ff5c8a55; }
+  .buzz:active { transform: translateY(6px); box-shadow: 0 4px 0 #7d0f33, 0 10px 20px #ff5c8a55; }
+  .buzz:disabled { background: #3a3560; box-shadow: 0 8px 0 #25214a; filter: none; }
+  .answer { background: #2d2750; border: 1px dashed var(--gold); border-radius: 14px; padding: 12px 18px; }
+  .answer b { color: var(--gold); font-size: 1.3rem; }
+  .bars { height: 12px; background: var(--panel2); border-radius: 8px; overflow: hidden; }
+  .bars > i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent2), var(--accent)); width: 0; transition: width 1.4s ease; }
+  .podium { display: flex; gap: 12px; align-items: flex-end; justify-content: center; margin: 10px 0 22px; }
+  .pod { flex: 1; max-width: 190px; border-radius: 14px 14px 0 0; padding: 12px 8px; text-align: center; background: var(--panel2); }
+  .pod.p1 { height: 190px; background: linear-gradient(#5a4a14, #2f2810); border: 1px solid var(--gold); }
+  .pod.p2 { height: 150px; } .pod.p3 { height: 120px; }
+  .pod .medal { font-size: 2rem; }
+  .rank { display: grid; grid-template-columns: 38px 1fr auto; gap: 12px; align-items: center; padding: 14px; background: var(--panel2); border-radius: 14px; margin-bottom: 10px; }
+  .rank .n { font-weight: 900; font-size: 1.2rem; color: var(--muted); }
+  .rank.me { outline: 2px solid var(--accent2); }
+  .flash { animation: flash .6s; }
+  @keyframes flash { 0% { box-shadow: 0 0 0 0 #ffcf4a; } 100% { box-shadow: 0 0 0 40px #ffcf4a00; } }
+  .hidden { display: none !important; }
+  .mediabox { position: fixed; width: 1px; height: 1px; left: -10px; top: -10px; overflow: hidden; opacity: 0; pointer-events: none; }
+  .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--panel2); border: 1px solid var(--line); padding: 12px 18px; border-radius: 12px; z-index: 9; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="row" style="justify-content:space-between;margin-bottom:18px">
+    <h1>🎧 Blind Test <span>Party</span></h1>
+    <div id="topinfo" class="muted"></div>
+  </div>
+
+  <!-- ACCUEIL -->
+  <div id="home" class="hidden">
+    <div class="card" style="max-width:520px;margin:30px auto">
+      <h2>Ton pseudo</h2>
+      <div class="row">
+        <input id="name" type="text" maxlength="16" placeholder="Ex : Tom" style="flex:1">
+      </div>
+      <div id="xpbadge" class="muted" style="margin-top:10px"></div>
+      <hr style="border-color:var(--line);margin:22px 0">
+      <button class="pink" id="btnCreate" style="width:100%">Créer un salon (je suis l'owner)</button>
+      <div class="center muted" style="margin:14px 0">ou</div>
+      <div class="row">
+        <input id="joincode" type="text" maxlength="4" placeholder="CODE" style="flex:1;text-transform:uppercase;letter-spacing:6px;text-align:center;font-weight:800">
+        <button id="btnJoin">Rejoindre</button>
+      </div>
+      <div class="err" id="homeErr"></div>
+    </div>
+  </div>
+
+  <!-- LOBBY -->
+  <div id="lobby" class="hidden">
+    <div class="grid2">
+      <div class="card">
+        <div class="row" style="justify-content:space-between">
+          <div>
+            <div class="muted">Code du salon</div>
+            <div class="code" id="lobbyCode"></div>
+          </div>
+          <button class="ghost" id="btnCopy">Copier le lien</button>
+        </div>
+        <h2 style="margin-top:22px">Choisis un pack</h2>
+        <div class="packs" id="packs"></div>
+        <h2 style="margin-top:22px">Nombre de manches</h2>
+        <div class="row" id="manchesOpts"></div>
+        <div class="muted" id="manchesInfo" style="margin-top:8px;font-size:.9rem"></div>
+        <div id="ownerLobby" style="margin-top:20px" class="hidden">
+          <button class="pink" id="btnStart" style="width:100%;font-size:1.1rem">▶ Lancer la partie</button>
+          <div class="muted" style="margin-top:10px;font-size:.9rem">Tu es l'owner : tu écoutes les réponses et tu valides ou refuses. Tu ne joues pas.</div>
+        </div>
+        <div id="waitLobby" class="muted hidden" style="margin-top:20px">⏳ En attente que l'owner lance la partie…</div>
+        <div class="err" id="lobbyErr"></div>
+      </div>
+      <div class="card">
+        <h2>Joueurs <span id="pcount"></span></h2>
+        <div id="lobbyPlayers"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JEU -->
+  <div id="game" class="hidden">
+    <div class="grid2">
+      <div class="card stage" id="stage">
+        <div class="round" id="roundLbl"></div>
+        <div class="status" id="statusTxt"></div>
+        <div id="timerBox" class="hidden" style="width:min(420px,100%)">
+          <div class="bars" style="height:16px"><i id="timerBar" style="width:100%;transition:none"></i></div>
+          <div id="timerTxt" style="font-weight:900;font-size:1.6rem;margin-top:6px"></div>
+        </div>
+        <div id="answerBox" class="answer hidden"></div>
+        <button id="buzz" class="buzz hidden">BUZZ !</button>
+
+        <div id="ownerCtl" class="hidden" style="width:100%">
+          <div class="row" style="justify-content:center" id="ownerBtns"></div>
+          <div id="mediaCtl" class="hidden" style="margin-top:16px">
+            <div class="muted" style="font-size:.9rem;margin-bottom:6px">Source audio (optionnel) : colle un lien YouTube, il sera joué chez tous les joueurs</div>
+            <div class="row" style="justify-content:center">
+              <input id="mediaUrl" type="text" placeholder="https://www.youtube.com/watch?v=..." style="flex:1;min-width:220px">
+              <button class="ghost" id="btnMedia">Utiliser</button>
+              <a id="ytSearch" target="_blank" rel="noopener"><button class="ghost" type="button">🔎 Chercher</button></a>
+            </div>
+          </div>
+        </div>
+        <div class="err" id="gameErr"></div>
+      </div>
+      <div class="card">
+        <h2>Scores</h2>
+        <div id="scores"></div>
+        <div class="muted" style="font-size:.85rem;margin-top:10px">✅ +<span id="ptsOk"></span> · ❌ <span id="ptsKo"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RÉCAP DE MANCHE -->
+  <div id="recap" class="hidden">
+    <div class="card" style="max-width:640px;margin:0 auto">
+      <h2 id="recapTitle"></h2>
+      <div id="recapList"></div>
+      <div class="row" style="margin-top:18px;justify-content:center">
+        <button class="pink hidden" id="btnNextManche">Lancer la manche suivante →</button>
+        <div class="muted hidden" id="waitManche">⏳ En attente que l'owner lance la manche suivante…</div>
+      </div>
+      <div class="err" id="recapErr"></div>
+    </div>
+  </div>
+
+  <!-- FIN -->
+  <div id="end" class="hidden">
+    <div class="card">
+      <h2>Classement final</h2>
+      <div class="podium" id="podium"></div>
+      <div id="ranking"></div>
+      <div class="row" style="margin-top:18px;justify-content:center">
+        <button class="pink hidden" id="btnReplay">🔁 Rejouer (même salon)</button>
+        <button class="ghost" id="btnLeave">Retour à l'accueil</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="mediaBox" class="mediabox"></div>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const show = (id, on) => $(id).classList.toggle('hidden', !on);
+
+let pid = localStorage.getItem('bt_pid');
+if (!pid) { pid = (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2) + Date.now()); localStorage.setItem('bt_pid', pid); }
+let st = null, es = null, prevPhase = null, prevBuzzer = null, mediaKey = null;
+
+$('#name').value = localStorage.getItem('bt_name') || '';
+const urlCode = new URLSearchParams(location.search).get('code');
+if (urlCode) $('#joincode').value = urlCode.toUpperCase();
+
+async function api(body) {
+  const r = await fetch('/api', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ pid, ...body }) });
+  return r.json();
+}
+function connect(code) {
+  if (es) es.close();
+  sessionStorage.setItem('bt_code', code);
+  es = new EventSource(`/events?code=${code}&pid=${pid}`);
+  es.onmessage = (e) => { st = JSON.parse(e.data); render(); };
+  es.onerror = () => { if (es.readyState === 2) leave(true); };
+}
+function leave(silent) {
+  if (es) es.close();
+  es = null; st = null; sessionStorage.removeItem('bt_code'); stopMedia();
+  history.replaceState(null, '', location.pathname);
+  show('#lobby', false); show('#game', false); show('#end', false); show('#home', true);
+  $('#topinfo').textContent = '';
+  refreshXp();
+  if (!silent) return;
+  $('#homeErr').textContent = 'Connexion au salon perdue.';
+}
+
+async function refreshXp() {
+  const n = $('#name').value.trim();
+  if (!n) { $('#xpbadge').textContent = ''; return; }
+  const r = await (await fetch('/xp?name=' + encodeURIComponent(n))).json();
+  $('#xpbadge').textContent = r.games ? `Niveau ${r.level} · ${r.xp} XP · ${r.games} partie(s) jouée(s)` : 'Nouveau joueur — joue une partie pour gagner de l\'XP !';
+}
+$('#name').addEventListener('change', refreshXp);
+
+$('#btnCreate').onclick = async () => {
+  const name = $('#name').value.trim(); localStorage.setItem('bt_name', name);
+  const r = await api({ action: 'create', name });
+  if (r.error) return $('#homeErr').textContent = r.error;
+  connect(r.code);
+};
+$('#btnJoin').onclick = async () => {
+  const name = $('#name').value.trim(); localStorage.setItem('bt_name', name);
+  const code = $('#joincode').value.trim().toUpperCase();
+  const r = await api({ action: 'join', code, name });
+  if (r.error) return $('#homeErr').textContent = r.error;
+  connect(r.code);
+};
+$('#joincode').addEventListener('keydown', (e) => { if (e.key === 'Enter') $('#btnJoin').click(); });
+
+const send = async (action, extra = {}, errEl = '#gameErr') => {
+  const r = await api({ action, code: st.code, ...extra });
+  $(errEl).textContent = r.error || '';
+};
+
+$('#btnCopy').onclick = async () => {
+  const link = `${location.origin}/?code=${st.code}`;
+  try { await navigator.clipboard.writeText(link); toast('Lien copié !'); } catch (_) { prompt('Copie ce lien :', link); }
+};
+$('#btnStart').onclick = () => send('start', {}, '#lobbyErr');
+$('#btnReplay').onclick = () => send('replay');
+$('#btnNextManche').onclick = () => send('nextManche', {}, '#recapErr');
+
+// Compte à rebours de réponse (15 s) — l'heure de fin vient du serveur (durée restante à la réception)
+let answerEnd = null, lastTick = null;
+setInterval(() => {
+  if (!st || st.phase !== 'answering' || answerEnd === null) return;
+  const left = Math.max(0, (answerEnd - performance.now()) / 1000);
+  $('#timerBar').style.width = (left / st.answerTime * 100) + '%';
+  $('#timerBar').style.background = left <= 5 ? 'var(--ko)' : '';
+  $('#timerTxt').textContent = Math.ceil(left) + ' s';
+  $('#timerTxt').style.color = left <= 5 ? 'var(--ko)' : '';
+  const sec = Math.ceil(left);
+  if (sec <= 5 && sec > 0 && sec !== lastTick) { lastTick = sec; beep(660, .08); }
+}, 100);
+$('#btnLeave').onclick = () => leave();
+$('#buzz').onclick = () => send('buzz');
+document.addEventListener('keydown', (e) => {
+  if (e.code === 'Space' && st && !st.isOwner && st.phase === 'playing' && document.activeElement.tagName !== 'INPUT') { e.preventDefault(); send('buzz'); }
+});
+$('#btnMedia').onclick = () => send('setMedia', { url: $('#mediaUrl').value });
+
+function toast(t) { const d = document.createElement('div'); d.className = 'toast'; d.textContent = t; document.body.appendChild(d); setTimeout(() => d.remove(), 1800); }
+function esc(s) { return String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+
+let audioCtx;
+function beep(freq = 880, dur = .18) {
+  try {
+    audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+    const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+    o.frequency.value = freq; o.connect(g); g.connect(audioCtx.destination);
+    g.gain.setValueAtTime(.2, audioCtx.currentTime); g.gain.exponentialRampToValueAtTime(.001, audioCtx.currentTime + dur);
+    o.start(); o.stop(audioCtx.currentTime + dur);
+  } catch (_) {}
+}
+
+function stopMedia() { $('#mediaBox').innerHTML = ''; mediaKey = null; }
+function syncMedia() {
+  if (!st.playing || !st.media) return stopMedia();
+  const m = st.media;
+  const key = (m.id || m.src) + ':' + st.startAt + ':' + st.round;
+  if (key === mediaKey) return;
+  stopMedia(); mediaKey = key;
+  if (m.type === 'yt') {
+    $('#mediaBox').innerHTML = `<iframe width="200" height="200" allow="autoplay" src="https://www.youtube.com/embed/${m.id}?autoplay=1&start=${st.startAt}&controls=0&playsinline=1"></iframe>`;
+  } else {
+    const a = document.createElement('audio'); a.src = m.src; a.autoplay = true;
+    a.addEventListener('loadedmetadata', () => { a.currentTime = st.startAt; });
+    $('#mediaBox').appendChild(a); a.play().catch(() => {});
+  }
+}
+
+function playerRow(p) {
+  const cls = ['player'];
+  if (p.id === st.me) cls.push('me');
+  if (st.buzzer === p.id) cls.push('buzzer');
+  if (p.lockedOut && st.phase === 'playing') cls.push('out');
+  return `<div class="${cls.join(' ')}"><span class="dot ${p.connected ? '' : 'off'}"></span>
+    <span class="pname">${esc(p.name)}${p.isOwner ? '<span class="tag">OWNER</span>' : ''}</span>
+    ${p.isOwner ? '' : `<span class="pscore ${p.score < 0 ? 'neg' : ''}">${p.score}</span>`}</div>`;
+}
+
+function render() {
+  show('#home', false);
+  const phase = st.phase;
+  $('#topinfo').textContent = `Salon ${st.code}`;
+  show('#lobby', phase === 'lobby');
+  show('#game', ['idle', 'playing', 'answering', 'reveal'].includes(phase));
+  show('#end', phase === 'end');
+  history.replaceState(null, '', `?code=${st.code}`);
+
+  if (phase === 'lobby') {
+    stopMedia();
+    $('#lobbyCode').textContent = st.code;
+    const guests = st.players.filter((p) => !p.isOwner);
+    $('#pcount').textContent = `(${guests.length}/${st.maxPlayers})`;
+    $('#lobbyPlayers').innerHTML = st.players.map(playerRow).join('');
+    $('#packs').innerHTML = st.packs.map((p) =>
+      `<div class="pack ${p.id === st.packId ? 'sel' : ''} ${st.isOwner ? '' : 'locked'}" data-id="${p.id}">
+        <div class="em">${p.emoji}</div><div style="font-weight:700;margin-top:6px">${esc(p.name)}</div>
+        <div class="muted">${p.count} génériques</div></div>`).join('');
+    if (st.isOwner) document.querySelectorAll('.pack').forEach((el) => el.onclick = () => send('setPack', { packId: el.dataset.id }, '#lobbyErr'));
+    show('#ownerLobby', st.isOwner); show('#waitLobby', !st.isOwner);
+    $('#manchesOpts').innerHTML = st.manchesOptions.map((m) =>
+      `<button class="${m === st.manches ? 'pink' : 'ghost'}" data-m="${m}" ${st.isOwner ? '' : 'disabled'}>${m} manche${m > 1 ? 's' : ''}</button>`).join('');
+    if (st.isOwner) document.querySelectorAll('#manchesOpts button').forEach((el) => el.onclick = () => send('setManches', { manches: Number(el.dataset.m) }, '#lobbyErr'));
+    $('#manchesInfo').textContent = `${st.total} génériques au total · ${st.perManche} par manche · récap des scores entre les manches · ${st.answerTime} s pour répondre après un buzz`;
+  }
+
+  show('#recap', phase === 'recap');
+  if (phase === 'recap') {
+    $('#recapTitle').textContent = `Fin de la manche ${st.finishedManche}/${st.manches}`;
+    $('#recapList').innerHTML = st.recap.map((r) => `<div class="rank ${r.id === st.me ? 'me' : ''}">
+      <div class="n">#${r.rank}</div><div style="font-weight:700">${esc(r.name)}</div>
+      <div style="text-align:right"><div style="font-weight:900;font-size:1.15rem">${r.total} pts</div>
+      <div style="font-size:.85rem;color:${r.gain < 0 ? 'var(--ko)' : 'var(--ok)'}">${r.gain >= 0 ? '+' : ''}${r.gain} cette manche</div></div></div>`).join('');
+    show('#btnNextManche', st.isOwner); show('#waitManche', !st.isOwner);
+  }
+
+  if (['idle', 'playing', 'answering', 'reveal'].includes(phase)) {
+    $('#roundLbl').textContent = (st.manches > 1 ? `Manche ${st.manche}/${st.manches} · ` : '') + `${st.packName} · Générique ${st.roundInManche}/${st.perManche}`;
+    show('#timerBox', phase === 'answering');
+    if (phase === 'answering') answerEnd = performance.now() + (st.answerMs || 0); else { answerEnd = null; lastTick = null; }
+    $('#scores').innerHTML = st.players.filter((p) => !p.isOwner).sort((a, b) => b.score - a.score).map(playerRow).join('');
+    $('#ptsOk').textContent = st.pointsOk; $('#ptsKo').textContent = st.pointsKo;
+    const buzzerName = (st.players.find((p) => p.id === st.buzzer) || {}).name;
+    const iAmBuzzer = st.buzzer === st.me;
+    const me = st.players.find((p) => p.id === st.me);
+
+    // statut
+    let status = '';
+    if (phase === 'idle') status = st.isOwner ? 'Prêt ? Lance le générique' : '🎬 Le prochain générique arrive…';
+    if (phase === 'playing') {
+      const r0 = st.lastResult;
+      const note = r0 && r0.type === 'ko' ? `<div class="muted" style="font-size:1rem;font-weight:600;margin-top:6px">${r0.timeout ? '⏱ Temps écoulé' : '❌ Refusé'} pour ${esc(r0.name)} (${r0.delta}) — ça repart !</div>` : '';
+      status = (st.isOwner ? '🎵 Générique en cours…' : (me && me.lockedOut ? '🚫 Tu es bloqué sur ce générique' : '🎵 Écoute… et buzz !')) + note;
+    }
+    if (phase === 'answering') status = iAmBuzzer ? '🎤 À toi ! Dis ta réponse à voix haute' : `🔔 ${esc(buzzerName || '')} a buzzé !`;
+    if (phase === 'reveal') {
+      const r = st.lastResult;
+      if (r && r.type === 'ok') status = `✅ ${esc(r.name)} gagne +${r.delta} !`;
+      else if (r && r.type === 'ko') status = `${r.timeout ? '⏱ Temps écoulé' : '❌'} — personne n'a trouvé (${esc(r.name)} ${r.delta})`;
+      else status = '⏭ Générique passé';
+    }
+    $('#statusTxt').innerHTML = status;
+
+    // réponse
+    const showAns = st.answer && (st.isOwner || phase === 'reveal');
+    $('#answerBox').classList.toggle('hidden', !showAns);
+    $('#answerBox').innerHTML = showAns ? `${st.isOwner && phase !== 'reveal' ? 'Réponse (secrète) : ' : 'C\'était : '}<b>${esc(st.answer)}</b>` : '';
+
+    // buzzer joueurs
+    show('#buzz', !st.isOwner && ['playing', 'answering', 'idle'].includes(phase));
+    $('#buzz').disabled = phase !== 'playing' || (me && me.lockedOut);
+
+    // contrôles owner
+    show('#ownerCtl', st.isOwner);
+    if (st.isOwner) {
+      let b = '';
+      if (phase === 'idle') b = `<button class="pink" data-a="play">▶ Lancer le générique</button><button class="ghost" data-a="skip">Passer</button>`;
+      if (phase === 'playing') b = `<button class="ghost" data-a="skip">Passer ce générique</button>`;
+      if (phase === 'answering') b = `<button class="ok" data-a="validate" style="font-size:1.1rem">✅ Valider +${st.pointsOk}</button><button class="ko" data-a="refuse" style="font-size:1.1rem">❌ Refuser ${st.pointsKo}</button>`;
+      if (phase === 'reveal') b = `<button class="pink" data-a="next">${st.round >= st.total ? '🏁 Voir le classement' : (st.roundInManche >= st.perManche ? '📊 Fin de la manche →' : 'Générique suivant →')}</button>`;
+      $('#ownerBtns').innerHTML = b;
+      $('#ownerBtns').querySelectorAll('button').forEach((el) => el.onclick = () => send(el.dataset.a));
+      show('#mediaCtl', ['idle', 'playing', 'answering'].includes(phase));
+      if (st.answer) $('#ytSearch').href = 'https://www.youtube.com/results?search_query=' + encodeURIComponent('générique ' + st.answer);
+      if (phase === 'idle') $('#mediaUrl').value = st.media && st.media.type === 'yt' ? 'https://youtu.be/' + st.media.id : '';
+    }
+    if (phase === 'answering' && prevPhase !== 'answering') { beep(880); if (iAmBuzzer) beep(1175, .25); }
+    if (phase === 'reveal' && prevPhase !== 'reveal' && st.lastResult) beep(st.lastResult.type === 'ok' ? 1320 : 220, .3);
+    if (phase === 'answering') $('#stage').classList.add('flash');
+    else $('#stage').classList.remove('flash');
+    syncMedia();
+  } else { stopMedia(); }
+
+  if (phase === 'end') renderEnd();
+  prevPhase = phase;
+}
+
+function renderEnd() {
+  const res = st.results || [];
+  const medals = ['🥇', '🥈', '🥉'];
+  const order = [res[1], res[0], res[2]].filter(Boolean);
+  const cls = { 0: 'p1', 1: 'p2', 2: 'p3' };
+  $('#podium').innerHTML = order.map((r) => `<div class="pod ${cls[r.rank - 1]}"><div class="medal">${medals[r.rank - 1]}</div>
+    <div style="font-weight:800;margin-top:6px">${esc(r.name)}</div><div class="muted">${r.score} pts</div></div>`).join('');
+  $('#ranking').innerHTML = res.map((r) => {
+    const pctBefore = (r.xpBefore % r.xpPerLevel) / r.xpPerLevel * 100;
+    const lvlUp = r.levelAfter > r.levelBefore;
+    const pctAfter = lvlUp ? 100 : (r.xpAfter % r.xpPerLevel) / r.xpPerLevel * 100;
+    return `<div class="rank ${r.id === st.me ? 'me' : ''}">
+      <div class="n">#${r.rank}</div>
+      <div><div style="font-weight:700">${esc(r.name)} <span class="muted" style="font-weight:400">· ${r.score} pts</span></div>
+        <div class="bars" style="margin-top:8px"><i data-from="${pctBefore}" data-to="${pctAfter}" style="width:${pctBefore}%"></i></div>
+        <div class="muted" style="font-size:.85rem;margin-top:4px">Niveau ${r.levelBefore}${lvlUp ? ` → <b style="color:var(--gold)">Niveau ${r.levelAfter} 🎉</b>` : ''} · ${r.xpAfter} XP</div></div>
+      <div style="text-align:right;font-weight:900;color:var(--ok);font-size:1.2rem">+${r.gained} XP</div></div>`;
+  }).join('');
+  requestAnimationFrame(() => document.querySelectorAll('.bars > i').forEach((i) => { i.style.width = i.dataset.to + '%'; }));
+  show('#btnReplay', st.isOwner);
+}
+
+// reconnexion auto après rechargement de la page
+(async function init() {
+  const saved = sessionStorage.getItem('bt_code');
+  if (saved) {
+    const r = await api({ action: 'join', code: saved, name: localStorage.getItem('bt_name') || 'Joueur' });
+    if (!r.error) { connect(saved); return; }
+    sessionStorage.removeItem('bt_code');
+  }
+  show('#home', true); refreshXp();
+})();
+</script>
+</body>
+</html>

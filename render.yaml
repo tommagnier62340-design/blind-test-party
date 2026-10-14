@@ -1,0 +1,9 @@
+# Blueprint Render : déploiement gratuit en un clic depuis un dépôt GitHub
+services:
+  - type: web
+    name: blind-test-party
+    runtime: node
+    plan: free
+    buildCommand: "echo 'rien à installer'"
+    startCommand: node server.js
+    healthCheckPath: /

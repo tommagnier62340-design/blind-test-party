@@ -1,0 +1,13 @@
+{
+  "name": "blind-test-party",
+  "version": "1.1.0",
+  "description": "Blind test multijoueur (owner + 10 joueurs) : buzzer, manches, classement et XP",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

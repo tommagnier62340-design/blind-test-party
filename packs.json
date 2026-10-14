@@ -1,0 +1,475 @@
+[
+  {
+    "id": "series",
+    "name": "Génériques de séries",
+    "emoji": "📺",
+    "items": [
+      {
+        "title": "Friends",
+        "accepted": [
+          "friends"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Game of Thrones",
+        "accepted": [
+          "game of thrones",
+          "got"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Les Simpson",
+        "accepted": [
+          "les simpson",
+          "the simpsons",
+          "simpsons"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Stranger Things",
+        "accepted": [
+          "stranger things"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Breaking Bad",
+        "accepted": [
+          "breaking bad"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Kaamelott",
+        "accepted": [
+          "kaamelott"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Dr House",
+        "accepted": [
+          "dr house",
+          "house",
+          "docteur house"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Prison Break",
+        "accepted": [
+          "prison break"
+        ],
+        "media": ""
+      },
+      {
+        "title": "The Office",
+        "accepted": [
+          "the office",
+          "office"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Scrubs",
+        "accepted": [
+          "scrubs"
+        ],
+        "media": ""
+      },
+      {
+        "title": "How I Met Your Mother",
+        "accepted": [
+          "how i met your mother",
+          "himym"
+        ],
+        "media": ""
+      },
+      {
+        "title": "The Big Bang Theory",
+        "accepted": [
+          "the big bang theory",
+          "big bang theory"
+        ],
+        "media": ""
+      },
+      {
+        "title": "South Park",
+        "accepted": [
+          "south park"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Peaky Blinders",
+        "accepted": [
+          "peaky blinders"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Malcolm",
+        "accepted": [
+          "malcolm",
+          "malcolm in the middle"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Les Cités d'or",
+        "accepted": [
+          "les mysterieuses cites d'or",
+          "cites d'or"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Totally Spies",
+        "accepted": [
+          "totally spies"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Lost",
+        "accepted": [
+          "lost"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Dexter",
+        "accepted": [
+          "dexter"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Doctor Who",
+        "accepted": [
+          "doctor who",
+          "dr who"
+        ],
+        "media": ""
+      }
+    ]
+  },
+  {
+    "id": "anime",
+    "name": "Génériques d'animés",
+    "emoji": "🎌",
+    "items": [
+      {
+        "title": "Dragon Ball Z",
+        "accepted": [
+          "dragon ball z",
+          "dbz"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Naruto",
+        "accepted": [
+          "naruto"
+        ],
+        "media": ""
+      },
+      {
+        "title": "One Piece",
+        "accepted": [
+          "one piece"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Pokémon",
+        "accepted": [
+          "pokemon"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Les Chevaliers du Zodiaque",
+        "accepted": [
+          "les chevaliers du zodiaque",
+          "saint seiya"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Yu-Gi-Oh!",
+        "accepted": [
+          "yu-gi-oh",
+          "yugioh"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Digimon",
+        "accepted": [
+          "digimon"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Détective Conan",
+        "accepted": [
+          "detective conan",
+          "conan"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Bleach",
+        "accepted": [
+          "bleach"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Death Note",
+        "accepted": [
+          "death note"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Fairy Tail",
+        "accepted": [
+          "fairy tail"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Hunter x Hunter",
+        "accepted": [
+          "hunter x hunter",
+          "hxh"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Fullmetal Alchemist",
+        "accepted": [
+          "fullmetal alchemist",
+          "fma"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Sailor Moon",
+        "accepted": [
+          "sailor moon"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Cowboy Bebop",
+        "accepted": [
+          "cowboy bebop"
+        ],
+        "media": ""
+      },
+      {
+        "title": "L'Attaque des Titans",
+        "accepted": [
+          "l'attaque des titans",
+          "attack on titan",
+          "snk"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Demon Slayer",
+        "accepted": [
+          "demon slayer",
+          "kimetsu no yaiba"
+        ],
+        "media": ""
+      },
+      {
+        "title": "My Hero Academia",
+        "accepted": [
+          "my hero academia",
+          "mha"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Jujutsu Kaisen",
+        "accepted": [
+          "jujutsu kaisen",
+          "jjk"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Code Lyoko",
+        "accepted": [
+          "code lyoko"
+        ],
+        "media": ""
+      }
+    ]
+  },
+  {
+    "id": "fr",
+    "name": "Génériques français",
+    "emoji": "🇫🇷",
+    "items": [
+      {
+        "title": "Koh-Lanta",
+        "accepted": [
+          "koh-lanta",
+          "koh lanta"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Fort Boyard",
+        "accepted": [
+          "fort boyard"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Questions pour un champion",
+        "accepted": [
+          "questions pour un champion",
+          "qpuc"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Plus belle la vie",
+        "accepted": [
+          "plus belle la vie",
+          "pblv"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Joséphine, ange gardien",
+        "accepted": [
+          "josephine ange gardien",
+          "josephine"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Navarro",
+        "accepted": [
+          "navarro"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Julie Lescaut",
+        "accepted": [
+          "julie lescaut"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Caméra Café",
+        "accepted": [
+          "camera cafe"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Scènes de ménages",
+        "accepted": [
+          "scenes de menages"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Un gars, une fille",
+        "accepted": [
+          "un gars une fille"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Les Guignols de l'info",
+        "accepted": [
+          "les guignols de l'info",
+          "les guignols",
+          "guignols"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Intervilles",
+        "accepted": [
+          "intervilles"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Camping Paradis",
+        "accepted": [
+          "camping paradis"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Nos chers voisins",
+        "accepted": [
+          "nos chers voisins"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Section de recherches",
+        "accepted": [
+          "section de recherches"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Le Juste Prix",
+        "accepted": [
+          "le juste prix",
+          "juste prix"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Star Academy",
+        "accepted": [
+          "star academy",
+          "star ac"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Inspecteur Gadget",
+        "accepted": [
+          "inspecteur gadget"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Les Minikeums",
+        "accepted": [
+          "les minikeums",
+          "minikeums"
+        ],
+        "media": ""
+      },
+      {
+        "title": "Les Marseillais",
+        "accepted": [
+          "les marseillais",
+          "marseillais"
+        ],
+        "media": ""
+      }
+    ]
+  }
+]
