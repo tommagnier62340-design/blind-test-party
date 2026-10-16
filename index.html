@@ -542,6 +542,7 @@
         <details id="modBox" class="hidden" style="margin-bottom:12px"><summary class="muted" style="cursor:pointer">🛡️ Modération</summary><div id="modList" style="margin-top:8px"></div></details>
         <div class="row" style="justify-content:center" id="ownerBtns"></div>
         <div id="mediaCtl" class="hidden" style="margin-top:16px">
+          <div id="candBox" class="hidden" style="margin-bottom:12px;text-align:left"></div>
           <div class="muted" style="font-size:.9rem;margin-bottom:6px">La piste est trouvée automatiquement. Une autre source ? Colle un lien YouTube : il est joué chez tous les joueurs, les autres pistes sont supprimées et le lien est enregistré pour ce générique (il sera repris à chaque partie). Champ vide + « Utiliser » = oublier le lien et revenir à la recherche automatique.</div>
           <div class="row" style="justify-content:center">
             <input id="mediaUrl" type="text" placeholder="https://www.youtube.com/watch?v=..." style="flex:1;min-width:220px">
@@ -864,6 +865,8 @@ function beep(freq = 880, dur = .18) {
   } catch (_) {}
 }
 
+let candKey = null;
+function stopPrev() { const c = $('#candPrev'); if (c) c.innerHTML = ''; }
 function stopMedia() { $('#mediaBox').innerHTML = ''; mediaKey = null; }
 function syncMedia(o = st) {
   if (!o.playing || !o.media) return stopMedia();
@@ -944,6 +947,8 @@ function updateBig() {
     if (cdLast !== n) { cdLast = n; beep(n === 1 ? 880 : 520, .12); }
   } else if (st.phase === 'done') {
     el.innerHTML = '🏁<small>SALLE TERMINÉE</small>';
+  } else if (st.phase === 'playing' && st.musicPaused) {
+    el.innerHTML = '⏸<small>MUSIQUE EN PAUSE</small>';
   } else if (st.phase === 'playing' && st.paused) {
     el.innerHTML = '⏸<small>PAUSE · UNE AUTRE SALLE RÉPOND</small>';
   } else if (st.phase === 'playing') {
@@ -1426,7 +1431,7 @@ function playerRow(p) {
   if (st.buzzer === p.id) cls.push('buzzer');
   if ((p.lockedOut && st.phase === 'playing') || p.elim) cls.push('out');
   return `<div class="${cls.join(' ')}"><span class="pface">${avatarSvg(p, true)}</span><span class="dot ${p.connected ? '' : 'off'}"></span>
-    <span class="pname">${teamIcon(p)}${p.bot ? '🤖 ' : ''}${esc(p.name)}${p.isOwner ? '<span class="tag">OWNER</span>' : ''}${p.ready && st.phase === 'lobby' ? ' ✅' : ''}${p.streak >= 3 ? ' 🔥' + p.streak : ''}</span>${st.isOwner && !p.isOwner ? `<button class="kickBtn" data-id="${p.id}" title="Exclure ${esc(p.name)}">🚫</button>` : ''}
+    <span class="pname">${teamIcon(p)}${p.bot ? '🤖 ' : ''}${esc(p.name)}${p.isOwner ? '<span class="tag">OWNER</span>' : ''}${p.founder ? '<span class="tag" style="background:linear-gradient(90deg,#ffd45a,#ff9a3c);color:#3b1a00">👑 FONDATEUR</span>' : ''}${p.ready && st.phase === 'lobby' ? ' ✅' : ''}${p.streak >= 3 ? ' 🔥' + p.streak : ''}</span>${st.isOwner && !p.isOwner ? `<button class="kickBtn" data-id="${p.id}" title="Exclure ${esc(p.name)}">🚫</button>` : ''}
     ${p.isOwner ? '' : `<span class="pscore ${p.score < 0 ? 'neg' : ''}">${p.score}</span>`}</div>`;
 }
 
@@ -1522,7 +1527,7 @@ function render() {
     if (phase === 'playing') {
       const r0 = st.lastResult;
       const note = r0 && r0.type === 'ko' ? `<div class="muted" style="font-size:1rem;font-weight:600;margin-top:6px">${r0.timeout ? '⏱ Temps écoulé' : r0.voice ? '🤖 Mauvaise réponse' : '❌ Refusé'} pour ${esc(r0.name)} (${r0.delta}) — ça repart !</div>` : '';
-      status = (st.isOwner ? '🎵 Générique en cours…' : (st.spectator ? '👀 Tu regardes la finale' : st.paused ? '⏸ Pause : un joueur répond dans une autre salle…' : me && me.elim ? '❌ Éliminé — tu regardes la suite' : me && me.lockedOut ? '🚫 Tu es bloqué sur ce générique' : '🎵 Écoute… et buzz !')) + note;
+      status = (st.musicPaused ? '⏸ Musique en pause…' : st.isOwner ? '🎵 Générique en cours…' : (st.spectator ? '👀 Tu regardes la finale' : st.paused ? '⏸ Pause : un joueur répond dans une autre salle…' : me && me.elim ? '❌ Éliminé — tu regardes la suite' : me && me.lockedOut ? '🚫 Tu es bloqué sur ce générique' : '🎵 Écoute… et buzz !')) + note;
     }
     if (phase === 'answering') status = iAmBuzzer ? '🎤 À toi ! Dis ta réponse à voix haute' : `🔔 ${esc(buzzerName || '')} a buzzé !`;
     if (phase === 'reveal') {
@@ -1540,7 +1545,7 @@ function render() {
 
     // buzzer joueurs
     show('#buzz', !st.isOwner && !st.spectator && ['playing', 'answering', 'idle', 'countdown'].includes(phase));
-    $('#buzz').disabled = phase !== 'playing' || st.paused || (me && (me.lockedOut || me.elim));
+    $('#buzz').disabled = phase !== 'playing' || st.paused || st.musicPaused || (me && (me.lockedOut || me.elim));
 
     // contrôles owner
     show('#ownerCtl', st.isOwner);
@@ -1549,7 +1554,8 @@ function render() {
       const alt = st.candCount > 1 ? `<button class="ghost" data-a="altTrack">🔁 Autre piste (${st.candIdx + 1}/${st.candCount})</button>` : '';
       if (phase === 'idle') b = `<button class="pink" data-a="play" ${st.resolving || introId ? 'disabled' : ''}>${st.resolving ? '⏳ Chargement de la piste…' : '▶ Lancer le générique'}</button>${alt}<button class="ghost" data-a="skip">Passer</button>`;
       const botBtn = st.players.some((p) => p.bot && !p.lockedOut) ? `<button class="ghost" data-a="botBuzz">🤖 Faire buzzer un bot</button>` : '';
-      if (phase === 'playing') b = `${botBtn}${alt}<button class="ghost" data-a="skip">Passer ce générique</button>`;
+      const pauseBtn = st.musicPaused ? `<button class="pink" data-a="resumeMusic">▶ Reprendre la musique</button>` : `<button class="ghost" data-a="pauseMusic">⏸ Pause musique</button>`;
+      if (phase === 'playing') b = `${pauseBtn}${botBtn}${alt}<button class="ghost" data-a="skip">Passer ce générique</button>`;
       if (phase === 'countdown') b = `<button class="ghost" data-a="skip">Passer</button>`;
       const showTrack = ['idle', 'countdown', 'playing', 'answering'].includes(phase);
       show('#trackInfo', showTrack);
@@ -1567,6 +1573,20 @@ function render() {
       if (canMod && !$('#modBox').open) { /* contenu mis à jour seulement s'il est ouvert, pour ne pas fermer le menu */ }
       if (canMod) { $('#modList').innerHTML = st.players.filter((p) => !p.isOwner).map((p) => `<div class="player" style="margin-bottom:4px"><span class="pface">${avatarSvg(p, true)}</span><span class="pname">${esc(p.name)}</span><button class="kickBtn" data-id="${p.id}">🚫 Exclure</button></div>`).join(''); bindKick('#modList'); }
       show('#mediaCtl', ['idle', 'countdown', 'playing', 'answering'].includes(phase));
+      // choix de la piste : liste des vidéos trouvées, écoute privée (toi seul) puis « Choisir »
+      const showCands = ['idle', 'countdown', 'playing'].includes(phase) && st.cands && st.cands.length > 1;
+      show('#candBox', showCands);
+      if (!showCands) { $('#candBox').innerHTML = ''; candKey = null; }
+      else {
+        const key = JSON.stringify(st.cands.map((c) => c.yt || c.title)) + ':' + st.candIdx;
+        if (key !== candKey) {
+          candKey = key;
+          $('#candBox').innerHTML = `<div class="muted" style="font-size:.9rem;margin-bottom:6px">🎚 Pistes trouvées : écoute-les (toi seul) puis choisis celle qui sera jouée.</div><div id="candPrev"></div>` + st.cands.map((c) => `<div class="player" style="margin-bottom:4px;${c.i === st.candIdx ? 'outline:2px solid var(--gold)' : ''}"><span class="pname" style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${c.i === st.candIdx ? '✅ ' : ''}${esc(c.title)} <span class="muted">— ${esc(c.artist)}</span></span>${c.yt ? `<button class="ghost candListen" data-yt="${esc(c.yt)}" style="padding:4px 10px">👂 Écouter</button>` : ''}${c.i === st.candIdx ? '' : `<button class="ghost candPick" data-i="${c.i}" style="padding:4px 10px">Choisir</button>`}</div>`).join('');
+          $('#candBox').querySelectorAll('.candPick').forEach((el) => el.onclick = () => { stopPrev(); send('pickTrack', { index: Number(el.dataset.i) }); });
+          $('#candBox').querySelectorAll('.candListen').forEach((el) => el.onclick = () => { $('#candPrev').innerHTML = `<iframe width="260" height="146" allow="autoplay" style="border-radius:10px;margin-bottom:8px" src="https://www.youtube.com/embed/${el.dataset.yt}?autoplay=1&controls=1&playsinline=1"></iframe> <button class="ghost" id="candStop" style="padding:4px 10px">⏹ Stop</button>`; $('#candStop').onclick = stopPrev; });
+        }
+      }
+      if (phase !== 'idle') stopPrev();
       if (st.answer) $('#ytSearch').href = 'https://www.youtube.com/results?search_query=' + encodeURIComponent('générique ' + st.answer);
       if (phase === 'idle') $('#mediaUrl').value = st.media && st.media.type === 'yt' ? 'https://youtu.be/' + st.media.id : '';
     }
@@ -1692,7 +1712,7 @@ async function authCall(b) {
   catch (_) { return { error: 'Impossible de joindre le serveur' }; }
 }
 function paintAcct() {
-  $('#btnAcct').textContent = me ? `👤 ${me.pseudo} · Niv ${me.level}` : '👤 Login';
+  $('#btnAcct').textContent = me ? `${me.founder ? '👑' : '👤'} ${me.pseudo} · Niv ${me.level}` : '👤 Login';
   $('#name').value = me ? me.pseudo : (localStorage.getItem('bt_name') || '');
   $('#name').disabled = !!me;
   refreshXp(); paintAvatarMenu(); paintBoard(); paintProfile();

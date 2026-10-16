@@ -522,7 +522,8 @@
           "sailor moon"
         ]
       }
-    ]
+    ],
+    "searchSuffix": "opening"
   },
   {
     "id": "jeux-local",
@@ -731,7 +732,8 @@
           "red dead"
         ]
       }
-    ]
+    ],
+    "searchSuffix": "main theme"
   },
   {
     "id": "films",

@@ -49,7 +49,7 @@ function refreshPacks() {
         try { return fs.statSync(path.join(MEDIA_DIR, sub, f)).size > 20000; } catch (_) { return false; } // fichier vide / corrompu : ignoré
       });
       if (c) items.push({ title: it.title, accepted: it.accepted, search: it.title, media: '/media/' + [c.sub, c.f].filter(Boolean).map(encodeURIComponent).join('/') });
-      else if (cands.length) console.warn(`[pack ${p.id}] aucun fichier valide pour « ${it.title} »`);
+      else items.push({ title: it.title, accepted: it.accepted, search: it.search || (it.title + ' ' + (p.searchSuffix || 'theme')) }); // pas de mp3 (ex. site en ligne) : recherche YouTube
     }
     if (items.length) out.push({ id: p.id, name: p.name, emoji: p.emoji, items });
   }
@@ -199,6 +199,9 @@ function saveAcc() {
   catch (e) { console.error('Comptes non sauvegardés :', e.message); }
 }
 const crypto = require('crypto');
+// Rôle unique « Fondateur » : seul ce compte enregistre les liens YouTube (empreinte du mail, FOUNDER_EMAIL pour le changer)
+const FOUNDER_HASH = process.env.FOUNDER_HASH || '4231d7051a8fcda6615a2a878f92ce80cbd161af7f93c03dfd59a761520d3035';
+const isFounder = (email) => !!email && (process.env.FOUNDER_EMAIL ? String(email).toLowerCase() === process.env.FOUNDER_EMAIL.toLowerCase() : crypto.createHash('sha256').update(String(email).toLowerCase()).digest('hex') === FOUNDER_HASH);
 const hashPw = (pw, salt) => crypto.scryptSync(pw, salt, 32).toString('hex');
 const emailOf = (token) => (token && accDb.tokens[token]) || null;
 function newToken(email) {
@@ -228,7 +231,7 @@ function authInfo(email) {
   const e = entryOf('acct:' + email);
   const fav = Object.entries(e.packs || {}).sort((a, b) => b[1] - a[1])[0];
   const favPack = fav ? ((PACKS.find((p) => p.id === fav[0]) || {}).name || null) : null;
-  return { email, pseudo: u.pseudo, avatar: u.avatar || null, xp: e.xp, level: levelOf(e.xp), games: e.games, wins: e.wins || 0, xpPerLevel: XP_PER_LEVEL,
+  return { email, founder: isFounder(email), pseudo: u.pseudo, avatar: u.avatar || null, xp: e.xp, level: levelOf(e.xp), games: e.games, wins: e.wins || 0, xpPerLevel: XP_PER_LEVEL,
     goods: e.goods, bestStreak: e.bestStreak, winRate: e.games ? Math.round((e.wins / e.games) * 100) : 0, favPack,
     weekWins: e.week === weekNo() ? e.wWins : 0, weekXp: e.week === weekNo() ? e.wXp : 0,
     badges: BADGES.map((b) => ({ id: b.id, icon: b.icon, name: b.name, desc: b.desc, owned: !!b.test(e) })) };
@@ -571,7 +574,7 @@ function view(room, pid) {
     id: p.id, name: p.name, score: p.score, connected: p.connected, bot: !!p.bot,
     lockedOut: room.lockedOut.has(p.id), elim: !!p.elim, isOwner: p.id === room.ownerId, avatar: p.avatar || null,
     wins: p.bot ? 0 : ((xpDb[statKey(p)] || {}).wins || 0),
-    ready: !!p.ready, streak: p.streak || 0, team: p.team == null ? null : p.team, level: p.bot || p.house ? 1 : levelOf((xpDb[statKey(p)] || {}).xp || 0),
+    founder: isFounder(p.acct), ready: !!p.ready, streak: p.streak || 0, team: p.team == null ? null : p.team, level: p.bot || p.house ? 1 : levelOf((xpDb[statKey(p)] || {}).xp || 0),
   })).filter((p) => !room.players.get(p.id).house);
   const teams = room.mode === 'teams' && room.phase !== 'lobby' ? {
     defs: TEAMS, scores: TEAMS.map((_, t) => [...room.players.values()].filter((p) => p.team === t).reduce((a, p) => a + p.score, 0)),
@@ -589,6 +592,7 @@ function view(room, pid) {
     manche: Math.min(Math.floor(room.idx / perManche(room)) + 1, manchesTotal(room)),
     resolving: isOwner ? room.resolving : undefined,
     trackInfo: isOwner ? room.trackInfo : undefined, savedLink: isOwner ? !!room.saved : undefined,
+    cands: isOwner ? room.cand.slice(0, 8).map((c, i) => ({ i, title: String(c.title).slice(0, 90), artist: String(c.artist || '').slice(0, 40), yt: c.yt || null })) : undefined,
     candCount: isOwner ? room.cand.length : undefined, candIdx: isOwner ? room.candIdx : undefined,
     roundInManche: (room.idx % perManche(room)) + 1,
     answerTime: ANSWER_TIME, voiceAuto: !!room.voiceAuto,
@@ -597,7 +601,7 @@ function view(room, pid) {
     recap: room.phase === 'recap' ? room.recap : null,
     finishedManche: room.phase === 'recap' ? Math.floor(room.idx / perManche(room)) : null,
     answer: item && (isOwner || revealed) ? item.title : null,
-    playing: room.phase === 'playing' && !room.paused,
+    playing: room.phase === 'playing' && !room.paused && !room.musicPaused, musicPaused: !!room.musicPaused,
     media: room.media, startAt: (room.phase === 'playing' ? Math.floor(room.elapsed) : 0) + ((room.media && room.media.offset) || 0),
     lastResult: room.lastResult,
     results: room.phase === 'end' ? room.results : null,
@@ -672,6 +676,7 @@ function finishWith(room, ranked) {
 
 function startRound(room) {
   room.hintIdx = -1;
+  room.musicPaused = false;
   room.phase = 'idle';
   room.buzzer = null;
   room.lockedOut = new Set();
@@ -914,6 +919,7 @@ function act(body) {
     if (isOwner) return { error: 'L\'owner ne buzz pas' };
     if (room.phase !== 'playing') return { error: 'Trop tôt ou trop tard' };
     if (room.paused) return { error: 'Une autre salle est en train de répondre, patiente…' };
+    if (room.musicPaused) return { error: 'Musique en pause' };
     if ((room.players.get(pid) || {}).elim) return { error: 'Tu es éliminé du tournoi' };
     if (room.lockedOut.has(pid)) return { error: 'Tu as déjà été refusé sur ce générique' };
     room.elapsed = elapsedNow(room);
@@ -1073,19 +1079,35 @@ function act(body) {
       if (!['idle', 'countdown', 'playing', 'answering'].includes(room.phase)) return { error: 'Impossible maintenant' };
       if (!String(body.url || '').trim()) { // champ vidé : on oublie le lien enregistré et on revient à la recherche automatique
         const k = ovrKey(room, currentItem(room));
-        if (k && ovr[k]) { delete ovr[k]; saveOvr(); resolveRound(room); } else applyCandidate(room);
+        if (k && ovr[k] && isFounder(me.acct || (room.parent && (room.parent.players.get(pid) || {}).acct))) { delete ovr[k]; saveOvr(); resolveRound(room); } else if (k && ovr[k]) return { error: 'Seul le fondateur peut supprimer un lien enregistré' }; else applyCandidate(room);
         break;
       }
       room.media = mediaOf(String(body.url).trim());
       if (!room.media) return { error: 'Lien non reconnu (YouTube ou fichier .mp3)' };
-      if (room.media.type === 'yt') { // lien YouTube : on supprime les autres pistes et on l'enregistre pour ce générique
+      const founder = isFounder(me.acct || (room.parent && (room.parent.players.get(pid) || {}).acct));
+      if (room.media.type === 'yt') { // lien YouTube : on supprime les autres pistes ; seul le fondateur l'enregistre pour ce générique
         room.cand = [{ title: 'Lien collé', artist: 'owner', yt: room.media.id, offset: 0, src: 'https://www.youtube.com/watch?v=' + room.media.id }];
         room.candIdx = 0; room.resolving = false;
-        const k = ovrKey(room, currentItem(room));
+        const k = founder ? ovrKey(room, currentItem(room)) : null;
         if (k) { ovr[k] = { id: room.media.id }; saveOvr(); room.saved = true; room.trackInfo = '💾 Lien enregistré : les autres pistes sont supprimées pour ce générique'; }
-        else room.trackInfo = 'Lien collé par l\'owner (pack perso : non enregistré)';
+        else room.trackInfo = founder ? 'Lien collé par l\'owner (pack perso : non enregistré)' : 'Lien collé : joué pour ce générique seulement (seul le fondateur enregistre les liens)';
       } else room.trackInfo = 'Lien collé par l\'owner';
       break;
+    case 'pauseMusic':
+      if (room.phase !== 'playing' || room.musicPaused) return { error: 'Impossible maintenant' };
+      room.elapsed = elapsedNow(room); room.playStart = null; room.musicPaused = true;
+      break;
+    case 'resumeMusic':
+      if (room.phase !== 'playing' || !room.musicPaused) return { error: 'Impossible maintenant' };
+      room.musicPaused = false; room.playStart = Date.now();
+      break;
+    case 'pickTrack': { // l'owner choisit lui-même la piste parmi celles trouvées (avant ou pendant le générique)
+      if (!['idle', 'countdown', 'playing'].includes(room.phase)) return { error: 'Impossible maintenant' };
+      const i = Number(body.index);
+      if (!Number.isInteger(i) || i < 0 || i >= room.cand.length) return { error: 'Piste inconnue' };
+      room.candIdx = i; applyCandidate(room);
+      break;
+    }
     case 'altTrack':
       if (!['idle', 'countdown', 'playing'].includes(room.phase)) return { error: 'Impossible maintenant' };
       if (room.cand.length < 2) return { error: room.cand.length ? 'Pas d\'autre piste pour ce générique' : 'Aucune piste trouvée pour ce générique' };
