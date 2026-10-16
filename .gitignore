@@ -1,3 +1,6 @@
 node_modules/
-data/xp.json
+data/
 .DS_Store
+media/*
+!media/.gitkeep
+verification.txt

@@ -9,7 +9,7 @@
         "accepted": [
           "friends"
         ],
-        "media": ""
+        "search": "I'll Be There For You The Rembrandts"
       },
       {
         "title": "Game of Thrones",
@@ -17,7 +17,7 @@
           "game of thrones",
           "got"
         ],
-        "media": ""
+        "search": "Game of Thrones Main Title Ramin Djawadi"
       },
       {
         "title": "Les Simpson",
@@ -26,28 +26,28 @@
           "the simpsons",
           "simpsons"
         ],
-        "media": ""
+        "search": "The Simpsons Theme Danny Elfman"
       },
       {
         "title": "Stranger Things",
         "accepted": [
           "stranger things"
         ],
-        "media": ""
+        "search": "Stranger Things Theme Kyle Dixon Michael Stein"
       },
       {
         "title": "Breaking Bad",
         "accepted": [
           "breaking bad"
         ],
-        "media": ""
+        "search": "Breaking Bad Main Title Theme Dave Porter"
       },
       {
         "title": "Kaamelott",
         "accepted": [
           "kaamelott"
         ],
-        "media": ""
+        "search": "Kaamelott générique Alexandre Astier"
       },
       {
         "title": "Dr House",
@@ -56,14 +56,14 @@
           "house",
           "docteur house"
         ],
-        "media": ""
+        "search": "Teardrop Massive Attack"
       },
       {
         "title": "Prison Break",
         "accepted": [
           "prison break"
         ],
-        "media": ""
+        "search": "Prison Break Main Title Ramin Djawadi"
       },
       {
         "title": "The Office",
@@ -71,14 +71,14 @@
           "the office",
           "office"
         ],
-        "media": ""
+        "search": "The Office Theme Jay Ferguson"
       },
       {
         "title": "Scrubs",
         "accepted": [
           "scrubs"
         ],
-        "media": ""
+        "search": "Superman Lazlo Bane"
       },
       {
         "title": "How I Met Your Mother",
@@ -86,7 +86,7 @@
           "how i met your mother",
           "himym"
         ],
-        "media": ""
+        "search": "Hey Beautiful The Solids"
       },
       {
         "title": "The Big Bang Theory",
@@ -94,21 +94,21 @@
           "the big bang theory",
           "big bang theory"
         ],
-        "media": ""
+        "search": "Big Bang Theory Theme Barenaked Ladies"
       },
       {
         "title": "South Park",
         "accepted": [
           "south park"
         ],
-        "media": ""
+        "search": "Theme from South Park Primus"
       },
       {
         "title": "Peaky Blinders",
         "accepted": [
           "peaky blinders"
         ],
-        "media": ""
+        "search": "Red Right Hand Nick Cave"
       },
       {
         "title": "Malcolm",
@@ -116,7 +116,7 @@
           "malcolm",
           "malcolm in the middle"
         ],
-        "media": ""
+        "search": "Boss of Me They Might Be Giants"
       },
       {
         "title": "Les Cités d'or",
@@ -124,28 +124,28 @@
           "les mysterieuses cites d'or",
           "cites d'or"
         ],
-        "media": ""
+        "search": "Les Mystérieuses Cités d'or générique"
       },
       {
         "title": "Totally Spies",
         "accepted": [
           "totally spies"
         ],
-        "media": ""
+        "search": "Totally Spies theme"
       },
       {
         "title": "Lost",
         "accepted": [
           "lost"
         ],
-        "media": ""
+        "search": "Lost Main Title Michael Giacchino"
       },
       {
         "title": "Dexter",
         "accepted": [
           "dexter"
         ],
-        "media": ""
+        "search": "Dexter Main Title Rolfe Kent"
       },
       {
         "title": "Doctor Who",
@@ -153,165 +153,7 @@
           "doctor who",
           "dr who"
         ],
-        "media": ""
-      }
-    ]
-  },
-  {
-    "id": "anime",
-    "name": "Génériques d'animés",
-    "emoji": "🎌",
-    "items": [
-      {
-        "title": "Dragon Ball Z",
-        "accepted": [
-          "dragon ball z",
-          "dbz"
-        ],
-        "media": ""
-      },
-      {
-        "title": "Naruto",
-        "accepted": [
-          "naruto"
-        ],
-        "media": ""
-      },
-      {
-        "title": "One Piece",
-        "accepted": [
-          "one piece"
-        ],
-        "media": ""
-      },
-      {
-        "title": "Pokémon",
-        "accepted": [
-          "pokemon"
-        ],
-        "media": ""
-      },
-      {
-        "title": "Les Chevaliers du Zodiaque",
-        "accepted": [
-          "les chevaliers du zodiaque",
-          "saint seiya"
-        ],
-        "media": ""
-      },
-      {
-        "title": "Yu-Gi-Oh!",
-        "accepted": [
-          "yu-gi-oh",
-          "yugioh"
-        ],
-        "media": ""
-      },
-      {
-        "title": "Digimon",
-        "accepted": [
-          "digimon"
-        ],
-        "media": ""
-      },
-      {
-        "title": "Détective Conan",
-        "accepted": [
-          "detective conan",
-          "conan"
-        ],
-        "media": ""
-      },
-      {
-        "title": "Bleach",
-        "accepted": [
-          "bleach"
-        ],
-        "media": ""
-      },
-      {
-        "title": "Death Note",
-        "accepted": [
-          "death note"
-        ],
-        "media": ""
-      },
-      {
-        "title": "Fairy Tail",
-        "accepted": [
-          "fairy tail"
-        ],
-        "media": ""
-      },
-      {
-        "title": "Hunter x Hunter",
-        "accepted": [
-          "hunter x hunter",
-          "hxh"
-        ],
-        "media": ""
-      },
-      {
-        "title": "Fullmetal Alchemist",
-        "accepted": [
-          "fullmetal alchemist",
-          "fma"
-        ],
-        "media": ""
-      },
-      {
-        "title": "Sailor Moon",
-        "accepted": [
-          "sailor moon"
-        ],
-        "media": ""
-      },
-      {
-        "title": "Cowboy Bebop",
-        "accepted": [
-          "cowboy bebop"
-        ],
-        "media": ""
-      },
-      {
-        "title": "L'Attaque des Titans",
-        "accepted": [
-          "l'attaque des titans",
-          "attack on titan",
-          "snk"
-        ],
-        "media": ""
-      },
-      {
-        "title": "Demon Slayer",
-        "accepted": [
-          "demon slayer",
-          "kimetsu no yaiba"
-        ],
-        "media": ""
-      },
-      {
-        "title": "My Hero Academia",
-        "accepted": [
-          "my hero academia",
-          "mha"
-        ],
-        "media": ""
-      },
-      {
-        "title": "Jujutsu Kaisen",
-        "accepted": [
-          "jujutsu kaisen",
-          "jjk"
-        ],
-        "media": ""
-      },
-      {
-        "title": "Code Lyoko",
-        "accepted": [
-          "code lyoko"
-        ],
-        "media": ""
+        "search": "Doctor Who Theme Ron Grainer"
       }
     ]
   },
@@ -326,14 +168,14 @@
           "koh-lanta",
           "koh lanta"
         ],
-        "media": ""
+        "search": "Koh-Lanta générique"
       },
       {
         "title": "Fort Boyard",
         "accepted": [
           "fort boyard"
         ],
-        "media": ""
+        "search": "Fort Boyard générique"
       },
       {
         "title": "Questions pour un champion",
@@ -341,7 +183,7 @@
           "questions pour un champion",
           "qpuc"
         ],
-        "media": ""
+        "search": "Questions pour un champion générique"
       },
       {
         "title": "Plus belle la vie",
@@ -349,7 +191,7 @@
           "plus belle la vie",
           "pblv"
         ],
-        "media": ""
+        "search": "Plus belle la vie générique"
       },
       {
         "title": "Joséphine, ange gardien",
@@ -357,42 +199,42 @@
           "josephine ange gardien",
           "josephine"
         ],
-        "media": ""
+        "search": "Joséphine ange gardien générique"
       },
       {
         "title": "Navarro",
         "accepted": [
           "navarro"
         ],
-        "media": ""
+        "search": "Navarro générique"
       },
       {
         "title": "Julie Lescaut",
         "accepted": [
           "julie lescaut"
         ],
-        "media": ""
+        "search": "Julie Lescaut générique"
       },
       {
         "title": "Caméra Café",
         "accepted": [
           "camera cafe"
         ],
-        "media": ""
+        "search": "Caméra Café générique"
       },
       {
         "title": "Scènes de ménages",
         "accepted": [
           "scenes de menages"
         ],
-        "media": ""
+        "search": "Scènes de ménages générique"
       },
       {
         "title": "Un gars, une fille",
         "accepted": [
           "un gars une fille"
         ],
-        "media": ""
+        "search": "Un gars une fille générique"
       },
       {
         "title": "Les Guignols de l'info",
@@ -401,35 +243,35 @@
           "les guignols",
           "guignols"
         ],
-        "media": ""
+        "search": "Les Guignols de l'info générique"
       },
       {
         "title": "Intervilles",
         "accepted": [
           "intervilles"
         ],
-        "media": ""
+        "search": "Intervilles générique"
       },
       {
         "title": "Camping Paradis",
         "accepted": [
           "camping paradis"
         ],
-        "media": ""
+        "search": "Camping Paradis générique"
       },
       {
         "title": "Nos chers voisins",
         "accepted": [
           "nos chers voisins"
         ],
-        "media": ""
+        "search": "Nos chers voisins générique"
       },
       {
         "title": "Section de recherches",
         "accepted": [
           "section de recherches"
         ],
-        "media": ""
+        "search": "Section de recherches générique"
       },
       {
         "title": "Le Juste Prix",
@@ -437,7 +279,7 @@
           "le juste prix",
           "juste prix"
         ],
-        "media": ""
+        "search": "Le Juste Prix générique"
       },
       {
         "title": "Star Academy",
@@ -445,14 +287,14 @@
           "star academy",
           "star ac"
         ],
-        "media": ""
+        "search": "Star Academy générique"
       },
       {
         "title": "Inspecteur Gadget",
         "accepted": [
           "inspecteur gadget"
         ],
-        "media": ""
+        "search": "Inspecteur Gadget générique"
       },
       {
         "title": "Les Minikeums",
@@ -460,7 +302,7 @@
           "les minikeums",
           "minikeums"
         ],
-        "media": ""
+        "search": "Les Minikeums générique"
       },
       {
         "title": "Les Marseillais",
@@ -468,7 +310,1296 @@
           "les marseillais",
           "marseillais"
         ],
-        "media": ""
+        "search": "Les Marseillais générique"
+      }
+    ]
+  },
+  {
+    "id": "anime-local",
+    "name": "Génériques d'animés",
+    "emoji": "🎌",
+    "dir": "anime",
+    "items": [
+      {
+        "title": "L'Attaque des Titans",
+        "accepted": [
+          "attaque des titans",
+          "l attaque des titans",
+          "attack on titan",
+          "shingeki no kyojin",
+          "snk"
+        ],
+        "match": [
+          "attack on titan"
+        ]
+      },
+      {
+        "title": "Cowboy Bebop",
+        "accepted": [
+          "cowboy bebop"
+        ],
+        "match": [
+          "cowboy bebop"
+        ]
+      },
+      {
+        "title": "Death Note",
+        "accepted": [
+          "death note"
+        ],
+        "match": [
+          "death note"
+        ]
+      },
+      {
+        "title": "Demon Slayer",
+        "accepted": [
+          "demon slayer",
+          "kimetsu no yaiba"
+        ],
+        "match": [
+          "demon slayer"
+        ]
+      },
+      {
+        "title": "Détective Conan",
+        "accepted": [
+          "detective conan",
+          "conan",
+          "meitantei conan"
+        ],
+        "match": [
+          "conan"
+        ]
+      },
+      {
+        "title": "Dragon Ball Z",
+        "accepted": [
+          "dragon ball z",
+          "dragon ball",
+          "dbz",
+          "dragonball z"
+        ],
+        "match": [
+          "dragon ball"
+        ]
+      },
+      {
+        "title": "Fairy Tail",
+        "accepted": [
+          "fairy tail"
+        ],
+        "match": [
+          "fairy tail"
+        ]
+      },
+      {
+        "title": "Fullmetal Alchemist",
+        "accepted": [
+          "fullmetal alchemist",
+          "full metal alchemist",
+          "fma"
+        ],
+        "match": [
+          "fullmetal"
+        ]
+      },
+      {
+        "title": "Digimon",
+        "accepted": [
+          "digimon"
+        ],
+        "match": [
+          "digimon"
+        ]
+      },
+      {
+        "title": "Pokémon",
+        "accepted": [
+          "pokemon"
+        ],
+        "match": [
+          "pokemon"
+        ]
+      },
+      {
+        "title": "Yu-Gi-Oh!",
+        "accepted": [
+          "yu gi oh",
+          "yugioh",
+          "yu-gi-oh"
+        ],
+        "match": [
+          "yu gi oh"
+        ]
+      },
+      {
+        "title": "Hunter x Hunter",
+        "accepted": [
+          "hunter x hunter",
+          "hunter hunter",
+          "hxh"
+        ],
+        "match": [
+          "hunter"
+        ]
+      },
+      {
+        "title": "Jujutsu Kaisen",
+        "accepted": [
+          "jujutsu kaisen",
+          "jjk"
+        ],
+        "match": [
+          "jujutsu"
+        ]
+      },
+      {
+        "title": "Code Lyoko",
+        "accepted": [
+          "code lyoko"
+        ],
+        "match": [
+          "code lyoko"
+        ]
+      },
+      {
+        "title": "My Hero Academia",
+        "accepted": [
+          "my hero academia",
+          "boku no hero academia",
+          "mha"
+        ],
+        "match": [
+          "my hero academia"
+        ]
+      },
+      {
+        "title": "Naruto",
+        "accepted": [
+          "naruto",
+          "naruto shippuden"
+        ],
+        "match": [
+          "naruto"
+        ]
+      },
+      {
+        "title": "Bleach",
+        "accepted": [
+          "bleach"
+        ],
+        "match": [
+          "bleach"
+        ]
+      },
+      {
+        "title": "Saint Seiya",
+        "accepted": [
+          "saint seiya",
+          "les chevaliers du zodiaque",
+          "chevaliers du zodiaque"
+        ],
+        "match": [
+          "saint seiya"
+        ]
+      },
+      {
+        "title": "One Piece",
+        "accepted": [
+          "one piece"
+        ],
+        "match": [
+          "kitadani"
+        ]
+      },
+      {
+        "title": "Sailor Moon",
+        "accepted": [
+          "sailor moon"
+        ],
+        "match": [
+          "sailor moon"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "jeux-local",
+    "name": "Génériques de jeux vidéo",
+    "emoji": "🎮",
+    "dir": "jeux",
+    "items": [
+      {
+        "title": "Super Mario Bros",
+        "accepted": [
+          "super mario bros",
+          "super mario",
+          "mario"
+        ],
+        "match": [
+          "mario"
+        ]
+      },
+      {
+        "title": "The Legend of Zelda",
+        "accepted": [
+          "zelda",
+          "the legend of zelda",
+          "legend of zelda"
+        ],
+        "match": [
+          "zelda"
+        ]
+      },
+      {
+        "title": "Tetris",
+        "accepted": [
+          "tetris"
+        ],
+        "match": [
+          "tetris"
+        ]
+      },
+      {
+        "title": "Sonic",
+        "accepted": [
+          "sonic",
+          "sonic the hedgehog"
+        ],
+        "match": [
+          "sonic"
+        ]
+      },
+      {
+        "title": "Minecraft",
+        "accepted": [
+          "minecraft"
+        ],
+        "match": [
+          "minecraft"
+        ]
+      },
+      {
+        "title": "Pac-Man",
+        "accepted": [
+          "pac man",
+          "pacman"
+        ],
+        "match": [
+          "pac man"
+        ]
+      },
+      {
+        "title": "Undertale",
+        "accepted": [
+          "undertale"
+        ],
+        "match": [
+          "undertale"
+        ]
+      },
+      {
+        "title": "Final Fantasy",
+        "accepted": [
+          "final fantasy",
+          "ff7",
+          "final fantasy 7",
+          "final fantasy vii"
+        ],
+        "match": [
+          "final fantasy"
+        ]
+      },
+      {
+        "title": "Skyrim",
+        "accepted": [
+          "skyrim",
+          "the elder scrolls",
+          "elder scrolls",
+          "dragonborn"
+        ],
+        "match": [
+          "dragonborn"
+        ]
+      },
+      {
+        "title": "GTA",
+        "accepted": [
+          "gta",
+          "grand theft auto",
+          "gta 5",
+          "gta san andreas"
+        ],
+        "match": [
+          "gta"
+        ]
+      },
+      {
+        "title": "Halo",
+        "accepted": [
+          "halo"
+        ],
+        "match": [
+          "halo"
+        ]
+      },
+      {
+        "title": "Kingdom Hearts",
+        "accepted": [
+          "kingdom hearts"
+        ],
+        "match": [
+          "kingdom hearts"
+        ]
+      },
+      {
+        "title": "The Witcher",
+        "accepted": [
+          "the witcher",
+          "witcher",
+          "the witcher 3"
+        ],
+        "match": [
+          "witcher"
+        ]
+      },
+      {
+        "title": "Doom",
+        "accepted": [
+          "doom"
+        ],
+        "match": [
+          "doom"
+        ]
+      },
+      {
+        "title": "Metal Gear Solid",
+        "accepted": [
+          "metal gear solid",
+          "metal gear",
+          "mgs"
+        ],
+        "match": [
+          "metal gear"
+        ]
+      },
+      {
+        "title": "Animal Crossing",
+        "accepted": [
+          "animal crossing"
+        ],
+        "match": [
+          "animal crossing"
+        ]
+      },
+      {
+        "title": "Wii Sports",
+        "accepted": [
+          "wii sports"
+        ],
+        "match": [
+          "wii sports"
+        ]
+      },
+      {
+        "title": "Mortal Kombat",
+        "accepted": [
+          "mortal kombat"
+        ],
+        "match": [
+          "mortal kombat"
+        ]
+      },
+      {
+        "title": "Street Fighter",
+        "accepted": [
+          "street fighter"
+        ],
+        "match": [
+          "street fighter"
+        ]
+      },
+      {
+        "title": "Red Dead Redemption",
+        "accepted": [
+          "red dead redemption",
+          "red dead",
+          "rdr"
+        ],
+        "match": [
+          "red dead"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "films",
+    "name": "Musiques de films",
+    "emoji": "🎬",
+    "items": [
+      {
+        "title": "Star Wars",
+        "accepted": [
+          "star wars",
+          "la guerre des etoiles"
+        ],
+        "search": "Star Wars Main Title John Williams"
+      },
+      {
+        "title": "Titanic",
+        "accepted": [
+          "titanic"
+        ],
+        "search": "My Heart Will Go On Celine Dion"
+      },
+      {
+        "title": "Le Seigneur des anneaux",
+        "accepted": [
+          "le seigneur des anneaux",
+          "seigneur des anneaux",
+          "lord of the rings"
+        ],
+        "search": "Concerning Hobbits Howard Shore"
+      },
+      {
+        "title": "Harry Potter",
+        "accepted": [
+          "harry potter"
+        ],
+        "search": "Hedwig's Theme John Williams"
+      },
+      {
+        "title": "Pirates des Caraïbes",
+        "accepted": [
+          "pirates des caraibes",
+          "pirates of the caribbean"
+        ],
+        "search": "He's a Pirate Klaus Badelt"
+      },
+      {
+        "title": "Indiana Jones",
+        "accepted": [
+          "indiana jones"
+        ],
+        "search": "Raiders March John Williams"
+      },
+      {
+        "title": "Jurassic Park",
+        "accepted": [
+          "jurassic park",
+          "jurassic world"
+        ],
+        "search": "Jurassic Park Theme John Williams"
+      },
+      {
+        "title": "Le Parrain",
+        "accepted": [
+          "le parrain",
+          "the godfather",
+          "godfather"
+        ],
+        "search": "The Godfather Waltz Nino Rota"
+      },
+      {
+        "title": "Mission Impossible",
+        "accepted": [
+          "mission impossible"
+        ],
+        "search": "Mission Impossible Theme Lalo Schifrin"
+      },
+      {
+        "title": "James Bond",
+        "accepted": [
+          "james bond",
+          "007"
+        ],
+        "search": "James Bond Theme Monty Norman"
+      },
+      {
+        "title": "Rocky",
+        "accepted": [
+          "rocky"
+        ],
+        "search": "Gonna Fly Now Bill Conti"
+      },
+      {
+        "title": "Top Gun",
+        "accepted": [
+          "top gun"
+        ],
+        "search": "Danger Zone Kenny Loggins"
+      },
+      {
+        "title": "SOS Fantômes",
+        "accepted": [
+          "sos fantomes",
+          "ghostbusters"
+        ],
+        "search": "Ghostbusters Ray Parker Jr"
+      },
+      {
+        "title": "Retour vers le futur",
+        "accepted": [
+          "retour vers le futur",
+          "back to the future"
+        ],
+        "search": "The Power of Love Huey Lewis and the News"
+      },
+      {
+        "title": "Les Dents de la mer",
+        "accepted": [
+          "les dents de la mer",
+          "jaws"
+        ],
+        "search": "Jaws Theme John Williams"
+      },
+      {
+        "title": "Pulp Fiction",
+        "accepted": [
+          "pulp fiction"
+        ],
+        "search": "Misirlou Dick Dale"
+      },
+      {
+        "title": "Gladiator",
+        "accepted": [
+          "gladiator"
+        ],
+        "search": "Now We Are Free Hans Zimmer Lisa Gerrard"
+      },
+      {
+        "title": "Interstellar",
+        "accepted": [
+          "interstellar"
+        ],
+        "search": "Cornfield Chase Hans Zimmer"
+      },
+      {
+        "title": "La La Land",
+        "accepted": [
+          "la la land"
+        ],
+        "search": "City of Stars Ryan Gosling Emma Stone"
+      },
+      {
+        "title": "Les Choristes",
+        "accepted": [
+          "les choristes",
+          "choristes"
+        ],
+        "search": "Vois sur ton chemin Les Choristes"
+      }
+    ]
+  },
+  {
+    "id": "disney",
+    "name": "Chansons Disney",
+    "emoji": "🏰",
+    "items": [
+      {
+        "title": "La Reine des neiges",
+        "accepted": [
+          "la reine des neiges",
+          "reine des neiges",
+          "frozen"
+        ],
+        "search": "Let It Go Idina Menzel Frozen"
+      },
+      {
+        "title": "Le Roi Lion",
+        "accepted": [
+          "le roi lion",
+          "roi lion",
+          "the lion king",
+          "lion king"
+        ],
+        "search": "Circle of Life Lion King"
+      },
+      {
+        "title": "Aladdin",
+        "accepted": [
+          "aladdin"
+        ],
+        "search": "A Whole New World Peabo Bryson Regina Belle"
+      },
+      {
+        "title": "La Belle et la Bête",
+        "accepted": [
+          "la belle et la bete",
+          "belle et la bete",
+          "beauty and the beast"
+        ],
+        "search": "Beauty and the Beast Angela Lansbury"
+      },
+      {
+        "title": "La Petite Sirène",
+        "accepted": [
+          "la petite sirene",
+          "petite sirene",
+          "little mermaid"
+        ],
+        "search": "Under the Sea Samuel E. Wright"
+      },
+      {
+        "title": "Le Livre de la jungle",
+        "accepted": [
+          "le livre de la jungle",
+          "livre de la jungle",
+          "jungle book"
+        ],
+        "search": "The Bare Necessities Phil Harris"
+      },
+      {
+        "title": "Mulan",
+        "accepted": [
+          "mulan"
+        ],
+        "search": "I'll Make a Man Out of You Donny Osmond"
+      },
+      {
+        "title": "Pocahontas",
+        "accepted": [
+          "pocahontas"
+        ],
+        "search": "Colors of the Wind Judy Kuhn"
+      },
+      {
+        "title": "Tarzan",
+        "accepted": [
+          "tarzan"
+        ],
+        "search": "You'll Be in My Heart Phil Collins"
+      },
+      {
+        "title": "Vaiana",
+        "accepted": [
+          "vaiana",
+          "moana"
+        ],
+        "search": "How Far I'll Go Auli'i Cravalho"
+      },
+      {
+        "title": "Encanto",
+        "accepted": [
+          "encanto"
+        ],
+        "search": "We Don't Talk About Bruno Encanto"
+      },
+      {
+        "title": "Coco",
+        "accepted": [
+          "coco"
+        ],
+        "search": "Remember Me Coco Disney Pixar"
+      },
+      {
+        "title": "Cendrillon",
+        "accepted": [
+          "cendrillon",
+          "cinderella"
+        ],
+        "search": "Bibbidi-Bobbidi-Boo Verna Felton"
+      },
+      {
+        "title": "Blanche-Neige",
+        "accepted": [
+          "blanche neige",
+          "blanche-neige",
+          "snow white"
+        ],
+        "search": "Heigh-Ho Snow White and the Seven Dwarfs"
+      },
+      {
+        "title": "Raiponce",
+        "accepted": [
+          "raiponce",
+          "tangled"
+        ],
+        "search": "I See the Light Mandy Moore Zachary Levi"
+      },
+      {
+        "title": "Toy Story",
+        "accepted": [
+          "toy story"
+        ],
+        "search": "You've Got a Friend in Me Randy Newman"
+      },
+      {
+        "title": "Hercule",
+        "accepted": [
+          "hercule",
+          "hercules"
+        ],
+        "search": "Go the Distance Roger Bart"
+      },
+      {
+        "title": "Les Aristochats",
+        "accepted": [
+          "les aristochats",
+          "aristochats"
+        ],
+        "search": "Everybody Wants to Be a Cat Phil Harris"
+      },
+      {
+        "title": "Peter Pan",
+        "accepted": [
+          "peter pan"
+        ],
+        "search": "You Can Fly Peter Pan Disney"
+      },
+      {
+        "title": "Mary Poppins",
+        "accepted": [
+          "mary poppins"
+        ],
+        "search": "Supercalifragilisticexpialidocious Julie Andrews"
+      }
+    ]
+  },
+  {
+    "id": "rap-fr",
+    "name": "Rap français",
+    "emoji": "🎤",
+    "items": [
+      {
+        "title": "Orelsan - La terre est ronde",
+        "accepted": [
+          "orelsan",
+          "la terre est ronde"
+        ],
+        "search": "Orelsan La terre est ronde",
+        "artist": [
+          "orelsan"
+        ],
+        "song": "la terre est ronde",
+        "strict": true
+      },
+      {
+        "title": "PNL - Au DD",
+        "accepted": [
+          "pnl",
+          "au dd"
+        ],
+        "search": "PNL Au DD",
+        "artist": [
+          "pnl"
+        ],
+        "song": "au dd",
+        "strict": true
+      },
+      {
+        "title": "Booba - DKR",
+        "accepted": [
+          "booba",
+          "dkr"
+        ],
+        "search": "Booba DKR",
+        "artist": [
+          "booba"
+        ],
+        "song": "dkr",
+        "strict": true
+      },
+      {
+        "title": "Jul - Tchikita",
+        "accepted": [
+          "jul",
+          "tchikita"
+        ],
+        "search": "Jul Tchikita",
+        "artist": [
+          "jul"
+        ],
+        "song": "tchikita",
+        "strict": true
+      },
+      {
+        "title": "Nekfeu - On verra",
+        "accepted": [
+          "nekfeu",
+          "on verra"
+        ],
+        "search": "Nekfeu On verra",
+        "artist": [
+          "nekfeu"
+        ],
+        "song": "on verra",
+        "strict": true
+      },
+      {
+        "title": "Ninho - Goutte d'eau",
+        "accepted": [
+          "ninho",
+          "goutte d eau"
+        ],
+        "search": "Ninho Goutte d'eau",
+        "artist": [
+          "ninho"
+        ],
+        "song": "goutte d eau",
+        "strict": true
+      },
+      {
+        "title": "Soprano - Cosmo",
+        "accepted": [
+          "soprano",
+          "cosmo"
+        ],
+        "search": "Soprano Cosmo",
+        "artist": [
+          "soprano"
+        ],
+        "song": "cosmo",
+        "strict": true
+      },
+      {
+        "title": "MC Solaar - Bouge de là",
+        "accepted": [
+          "mc solaar",
+          "solaar",
+          "bouge de la"
+        ],
+        "search": "MC Solaar Bouge de là",
+        "artist": [
+          "mc solaar",
+          "solaar"
+        ],
+        "song": "bouge de la",
+        "strict": true
+      },
+      {
+        "title": "IAM - Je danse le mia",
+        "accepted": [
+          "iam",
+          "je danse le mia"
+        ],
+        "search": "IAM Je danse le mia",
+        "artist": [
+          "iam"
+        ],
+        "song": "je danse le mia",
+        "strict": true
+      },
+      {
+        "title": "Suprême NTM - Ma Benz",
+        "accepted": [
+          "ntm",
+          "supreme ntm",
+          "ma benz"
+        ],
+        "search": "Suprême NTM Ma Benz",
+        "artist": [
+          "ntm"
+        ],
+        "song": "ma benz",
+        "strict": true
+      },
+      {
+        "title": "Gims - Sapés comme jamais",
+        "accepted": [
+          "gims",
+          "maitre gims",
+          "sapes comme jamais"
+        ],
+        "search": "Maître Gims Sapés comme jamais",
+        "artist": [
+          "gims",
+          "maitre gims"
+        ],
+        "song": "sapes comme jamais",
+        "strict": true
+      },
+      {
+        "title": "Niska - Réseaux",
+        "accepted": [
+          "niska",
+          "reseaux"
+        ],
+        "search": "Niska Réseaux",
+        "artist": [
+          "niska"
+        ],
+        "song": "reseaux",
+        "strict": true
+      },
+      {
+        "title": "SCH - Gambino",
+        "accepted": [
+          "sch",
+          "gambino"
+        ],
+        "search": "SCH Gambino",
+        "artist": [
+          "sch"
+        ],
+        "song": "gambino",
+        "strict": true
+      },
+      {
+        "title": "Naps - La kiffance",
+        "accepted": [
+          "naps",
+          "la kiffance"
+        ],
+        "search": "Naps La kiffance",
+        "artist": [
+          "naps"
+        ],
+        "song": "la kiffance",
+        "strict": true
+      },
+      {
+        "title": "Vald - Bonjour",
+        "accepted": [
+          "vald",
+          "bonjour"
+        ],
+        "search": "Vald Bonjour",
+        "artist": [
+          "vald"
+        ],
+        "song": "bonjour",
+        "strict": true
+      },
+      {
+        "title": "Bigflo & Oli - Dommage",
+        "accepted": [
+          "bigflo et oli",
+          "bigflo oli",
+          "dommage"
+        ],
+        "search": "Bigflo et Oli Dommage",
+        "artist": [
+          "bigflo"
+        ],
+        "song": "dommage",
+        "strict": true
+      },
+      {
+        "title": "Lomepal - Trop beau",
+        "accepted": [
+          "lomepal",
+          "trop beau"
+        ],
+        "search": "Lomepal Trop beau",
+        "artist": [
+          "lomepal"
+        ],
+        "song": "trop beau",
+        "strict": true
+      },
+      {
+        "title": "Rohff - Qui est l'exemple ?",
+        "accepted": [
+          "rohff",
+          "qui est l exemple"
+        ],
+        "search": "Rohff Qui est l'exemple",
+        "artist": [
+          "rohff"
+        ],
+        "song": "qui est l exemple",
+        "strict": true
+      },
+      {
+        "title": "Kery James - Banlieusards",
+        "accepted": [
+          "kery james",
+          "banlieusards"
+        ],
+        "search": "Kery James Banlieusards",
+        "artist": [
+          "kery james"
+        ],
+        "song": "banlieusards",
+        "strict": true
+      },
+      {
+        "title": "Disiz - J'pète les plombs",
+        "accepted": [
+          "disiz",
+          "j pete les plombs"
+        ],
+        "search": "Disiz J'pète les plombs",
+        "artist": [
+          "disiz"
+        ],
+        "song": "j pete les plombs",
+        "strict": true
+      }
+    ]
+  },
+  {
+    "id": "annees-2000",
+    "name": "Tubes des années 2000",
+    "emoji": "📻",
+    "items": [
+      {
+        "title": "Umbrella - Rihanna",
+        "accepted": [
+          "umbrella",
+          "rihanna"
+        ],
+        "search": "Rihanna Umbrella",
+        "artist": [
+          "rihanna"
+        ],
+        "song": "umbrella",
+        "strict": true
+      },
+      {
+        "title": "Crazy in Love - Beyoncé",
+        "accepted": [
+          "crazy in love",
+          "beyonce"
+        ],
+        "search": "Beyoncé Crazy in Love",
+        "artist": [
+          "beyonce"
+        ],
+        "song": "crazy in love",
+        "strict": true
+      },
+      {
+        "title": "I Gotta Feeling - Black Eyed Peas",
+        "accepted": [
+          "i gotta feeling",
+          "black eyed peas"
+        ],
+        "search": "Black Eyed Peas I Gotta Feeling",
+        "artist": [
+          "black eyed peas"
+        ],
+        "song": "i gotta feeling",
+        "strict": true
+      },
+      {
+        "title": "Hips Don't Lie - Shakira",
+        "accepted": [
+          "hips dont lie",
+          "hips don t lie",
+          "shakira"
+        ],
+        "search": "Shakira Hips Don't Lie",
+        "artist": [
+          "shakira"
+        ],
+        "song": "hips don t lie",
+        "strict": true
+      },
+      {
+        "title": "Toxic - Britney Spears",
+        "accepted": [
+          "toxic",
+          "britney spears",
+          "britney"
+        ],
+        "search": "Britney Spears Toxic",
+        "artist": [
+          "britney spears"
+        ],
+        "song": "toxic",
+        "strict": true
+      },
+      {
+        "title": "Lose Yourself - Eminem",
+        "accepted": [
+          "lose yourself",
+          "eminem"
+        ],
+        "search": "Eminem Lose Yourself",
+        "artist": [
+          "eminem"
+        ],
+        "song": "lose yourself",
+        "strict": true
+      },
+      {
+        "title": "Hey Ya! - Outkast",
+        "accepted": [
+          "hey ya",
+          "outkast"
+        ],
+        "search": "Outkast Hey Ya",
+        "artist": [
+          "outkast"
+        ],
+        "song": "hey ya",
+        "strict": true
+      },
+      {
+        "title": "In the End - Linkin Park",
+        "accepted": [
+          "in the end",
+          "linkin park"
+        ],
+        "search": "Linkin Park In the End",
+        "artist": [
+          "linkin park"
+        ],
+        "song": "in the end",
+        "strict": true
+      },
+      {
+        "title": "Seven Nation Army - The White Stripes",
+        "accepted": [
+          "seven nation army",
+          "white stripes"
+        ],
+        "search": "The White Stripes Seven Nation Army",
+        "artist": [
+          "white stripes"
+        ],
+        "song": "seven nation army",
+        "strict": true
+      },
+      {
+        "title": "Complicated - Avril Lavigne",
+        "accepted": [
+          "complicated",
+          "avril lavigne"
+        ],
+        "search": "Avril Lavigne Complicated",
+        "artist": [
+          "avril lavigne"
+        ],
+        "song": "complicated",
+        "strict": true
+      },
+      {
+        "title": "Clocks - Coldplay",
+        "accepted": [
+          "clocks",
+          "coldplay"
+        ],
+        "search": "Coldplay Clocks",
+        "artist": [
+          "coldplay"
+        ],
+        "song": "clocks",
+        "strict": true
+      },
+      {
+        "title": "Since U Been Gone - Kelly Clarkson",
+        "accepted": [
+          "since u been gone",
+          "kelly clarkson"
+        ],
+        "search": "Kelly Clarkson Since U Been Gone",
+        "artist": [
+          "kelly clarkson"
+        ],
+        "song": "since u been gone",
+        "strict": true
+      },
+      {
+        "title": "One More Time - Daft Punk",
+        "accepted": [
+          "one more time",
+          "daft punk"
+        ],
+        "search": "Daft Punk One More Time",
+        "artist": [
+          "daft punk"
+        ],
+        "song": "one more time",
+        "strict": true
+      },
+      {
+        "title": "Rehab - Amy Winehouse",
+        "accepted": [
+          "rehab",
+          "amy winehouse"
+        ],
+        "search": "Amy Winehouse Rehab",
+        "artist": [
+          "amy winehouse"
+        ],
+        "song": "rehab",
+        "strict": true
+      },
+      {
+        "title": "Just Dance - Lady Gaga",
+        "accepted": [
+          "just dance",
+          "lady gaga"
+        ],
+        "search": "Lady Gaga Just Dance",
+        "artist": [
+          "lady gaga"
+        ],
+        "song": "just dance",
+        "strict": true
+      },
+      {
+        "title": "SexyBack - Justin Timberlake",
+        "accepted": [
+          "sexyback",
+          "sexy back",
+          "justin timberlake"
+        ],
+        "search": "Justin Timberlake SexyBack",
+        "artist": [
+          "justin timberlake"
+        ],
+        "song": "sexyback",
+        "strict": true
+      },
+      {
+        "title": "Boulevard of Broken Dreams - Green Day",
+        "accepted": [
+          "boulevard of broken dreams",
+          "green day"
+        ],
+        "search": "Green Day Boulevard of Broken Dreams",
+        "artist": [
+          "green day"
+        ],
+        "song": "boulevard of broken dreams",
+        "strict": true
+      },
+      {
+        "title": "Bring Me to Life - Evanescence",
+        "accepted": [
+          "bring me to life",
+          "evanescence"
+        ],
+        "search": "Evanescence Bring Me to Life",
+        "artist": [
+          "evanescence"
+        ],
+        "song": "bring me to life",
+        "strict": true
+      },
+      {
+        "title": "La boulette - Diam's",
+        "accepted": [
+          "la boulette",
+          "diams",
+          "diam s"
+        ],
+        "search": "Diam's La boulette",
+        "artist": [
+          "diam s",
+          "diams"
+        ],
+        "song": "la boulette",
+        "strict": true
+      },
+      {
+        "title": "Moi... Lolita - Alizée",
+        "accepted": [
+          "moi lolita",
+          "lolita",
+          "alizee"
+        ],
+        "search": "Alizée Moi Lolita",
+        "artist": [
+          "alizee"
+        ],
+        "song": "moi lolita",
+        "strict": true
       }
     ]
   }
